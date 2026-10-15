@@ -26,7 +26,6 @@
       "bundler": "metro"
     },
     "plugins": [
-      "expo-haptics",
       "expo-web-browser"
     ]
   }

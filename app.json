@@ -1,0 +1,33 @@
+{
+  "expo": {
+    "name": "Habilitate",
+    "slug": "habilitate",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "scheme": "habilitate",
+    "newArchEnabled": true,
+    "splash": {
+      "resizeMode": "contain",
+      "backgroundColor": "#0A0D14"
+    },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.dt3bza.habilitate"
+    },
+    "android": {
+      "package": "com.dt3bza.habilitate",
+      "edgeToEdgeEnabled": true,
+      "adaptiveIcon": {
+        "backgroundColor": "#0A0D14"
+      }
+    },
+    "web": {
+      "bundler": "metro"
+    },
+    "plugins": [
+      "expo-haptics",
+      "expo-web-browser"
+    ]
+  }
+}

@@ -2,6 +2,7 @@
   "expo": {
     "name": "Habilitate",
     "slug": "habilitate",
+    "owner": "zakes20071",
     "version": "0.1.0",
     "orientation": "portrait",
     "userInterfaceStyle": "automatic",
@@ -27,6 +28,11 @@
     },
     "plugins": [
       "expo-web-browser"
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "07b2ad77-ef31-48f0-af4d-79ccd0ea9822"
+      }
+    }
   }
 }

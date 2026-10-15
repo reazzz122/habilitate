@@ -21,7 +21,8 @@
       "edgeToEdgeEnabled": true,
       "adaptiveIcon": {
         "backgroundColor": "#0A0D14"
-      }
+      },
+      "versionCode": 3
     },
     "web": {
       "bundler": "metro"

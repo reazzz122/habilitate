@@ -8,8 +8,11 @@
 // service_role key or a store secret in this file — it ships inside the app
 // bundle and anyone can read it.
 
-export const SUPABASE_URL = '';        // e.g. https://xxxx.supabase.co
-export const SUPABASE_ANON_KEY = '';   // the anon/publishable key, not service_role
+export const SUPABASE_URL = 'https://bgbhqmgfwqvcgpmiloes.supabase.co';
+export const SUPABASE_ANON_KEY =
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJnYmhxbWdmd3F2Y2dwbWlsb2VzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA5ODgxNzksImV4cCI6MjA5NjU2NDE3OX0.hHq3J4tUlHHQfT32ioYjIFix9ImIE_ETVR6D0iTMbpY';
+// ^ anon key, role=anon, verified. Public by design and safe in the bundle.
+//   Row Level Security is what protects the data, NOT this key.
 
 // Google sign-in needs no keys in this file. It runs through Supabase's own
 // authorize endpoint, so the Google client ID and secret live in the Supabase

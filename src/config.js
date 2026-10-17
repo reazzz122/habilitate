@@ -27,6 +27,18 @@ export const SUPABASE_ANON_KEY =
 // In Google Cloud Console the authorised redirect URI is Supabase's callback,
 // NOT the app's scheme:  https://<your-project>.supabase.co/auth/v1/callback
 
+// Where the privacy policy and the account-deletion page are hosted.
+// Google Play requires the privacy policy to be reachable from INSIDE the app
+// as well as from the store listing, and requires the deletion route to be a
+// public page.
+//
+// These currently point at pages hosted on claude.ai, which is fine for
+// testing but is NOT where they should live for a published app: Play needs
+// them to stay reachable for as long as the app is listed, so they belong on
+// a domain you control. Move them, change these two lines, ship.
+export const PRIVACY_URL = 'https://claude.ai/artifact/RYbKgAKx9G8Rou2AuiRdQZ';
+export const DELETE_ACCOUNT_URL = 'https://claude.ai/artifact/MH4Sz5uvipaxAnJMMFNxAZ';
+
 export const REVENUECAT_IOS_KEY = '';
 export const REVENUECAT_ANDROID_KEY = '';
 

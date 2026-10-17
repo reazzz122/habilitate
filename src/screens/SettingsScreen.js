@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { View, Text, Pressable, ScrollView, StyleSheet, Share, Alert } from 'react-native';
+import { View, Text, Pressable, ScrollView, StyleSheet, Share, Linking } from 'react-native';
 import { useTheme } from '../theme';
 import { maskEmail, signOut, backupAvailable } from '../auth';
 import { hasFeature, restore } from '../billing';
 import { buildReport, wipeAll, level } from '../storage';
+import { PRIVACY_URL, DELETE_ACCOUNT_URL } from '../config';
 
 function Block({ children, t }) {
   return <View style={[s.block, { backgroundColor: t.surface, borderColor: t.line }]}>{children}</View>;
@@ -129,6 +130,17 @@ export default function SettingsScreen({ state, session, entitlement, onSignedOu
       <Text style={[s.help, { color: t.fgFaint }]}>
         Plain text you can paste into WhatsApp, an email or a clinical note. It says in the report
         itself that the game metrics are not a validated clinical measure.
+      </Text>
+
+      <Text style={[s.h2, { color: t.fg }]}>Privacy</Text>
+      <Block t={t}>
+        <Row t={t} label="Privacy policy"
+             onPress={() => Linking.openURL(PRIVACY_URL).catch(() => {})} />
+        <Row t={t} label="How to delete your account"
+             onPress={() => Linking.openURL(DELETE_ACCOUNT_URL).catch(() => {})} last />
+      </Block>
+      <Text style={[s.help, { color: t.fgFaint }]}>
+        What the app records, why, and the rights you have over it under POPIA.
       </Text>
 
       <Text style={[s.h2, { color: t.fg }]}>Your data</Text>

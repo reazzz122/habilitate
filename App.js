@@ -6,8 +6,10 @@ import { StatusBar } from 'expo-status-bar';
 import { useTheme } from './src/theme';
 import { loadState, saveState, empty, bankRelapse, recordSave, dayStart } from './src/storage';
 import { getIdentity, getSession, shouldOfferBackup } from './src/auth';
+import { hasConsented, recordConsent } from './src/consent';
 import { init as initBilling, readEntitlement } from './src/billing';
 
+import ConsentScreen from './src/screens/ConsentScreen';
 import PathScreen from './src/screens/PathScreen';
 import ArenaScreen from './src/screens/ArenaScreen';
 import PatternsScreen from './src/screens/PatternsScreen';
@@ -75,6 +77,7 @@ export default function App() {
   const [session, setSession] = useState(null);
   const [entitlement, setEntitlement] = useState({ plus: false, source: null });
   const [ready, setReady] = useState(false);
+  const [consented, setConsented] = useState(false);
   const [tab, setTab] = useState('path');
   const [overlay, setOverlay] = useState(null); // 'auth' | 'paywall'
   const [paywallReason, setPaywallReason] = useState(null);
@@ -82,7 +85,11 @@ export default function App() {
 
   useEffect(() => {
     (async () => {
-      await getIdentity(); // mint the anonymous id on first launch
+      const ok = await hasConsented();
+      setConsented(ok);
+      // The anonymous id is minted only after consent, so a user who declines
+      // leaves no trace at all.
+      if (ok) await getIdentity();
       const [st, se, en] = await Promise.all([loadState(), getSession(), readEntitlement()]);
       setState(st);
       setSession(se);
@@ -108,6 +115,19 @@ export default function App() {
       <View style={[s.center, { backgroundColor: t.bg }]}>
         <ActivityIndicator color={t.safe} />
       </View>
+    );
+  }
+
+  if (!consented) {
+    return (
+      <SafeAreaProvider>
+        <StatusBar style={scheme === 'light' ? 'dark' : 'light'} />
+        <SafeAreaView style={{ flex: 1, backgroundColor: t.bg }}>
+          <ConsentScreen
+            onAccept={async () => { await recordConsent(); await getIdentity(); setConsented(true); }}
+          />
+        </SafeAreaView>
+      </SafeAreaProvider>
     );
   }
 
